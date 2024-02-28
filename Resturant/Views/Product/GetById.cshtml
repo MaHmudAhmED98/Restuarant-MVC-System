@@ -1,0 +1,52 @@
+﻿@model RestaruantMVC.Models.ViewModel.ProductViewModel
+
+@{
+    ViewData["Title"] = "GetById";
+}
+<div class="w-100 pt-5 ">
+
+    
+<div class="pt-4">
+    
+    <div class="container shadow-lg  ">
+            <h1 class="fw-bold  text-center text-danger py-2 bg-dark">Details </h1>
+
+        <div class="card mb-3" style="max-width:100%;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="data:image/*;base64,@Convert.ToBase64String(Model.Image)" class="img-fluid rounded-start" alt="..." style="max-width:400px;">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">Product Id</h5>
+                        <p class="card-text">@Html.DisplayNameFor(model => model.producId)</p>
+                        <hr />
+                        <h5 class="card-title">Name</h5>
+                        <p class="card-text">@Html.DisplayFor(model => model.ProductName)</p>
+                        <hr />
+                        <h5 class="card-title">Description</h5>
+                        <p class="card-text">@Html.DisplayNameFor(model => model.ProductDescription)</p>
+                        <hr />
+                        <h5 class="card-title">Pricee</h5>
+                        <p class="card-text">@Html.DisplayNameFor(model => model.Price)</p>
+                        <hr />
+                        <div>
+                            @if (Model.ProdectType == productType.drink)
+                            {
+                                <a class="btn btn-dark" asp-action="GetAllDrinks">Back to List</a>
+                            }
+                            else
+                            {
+                                <a class="btn btn-dark" asp-action="GetAllMeals">Back to List</a>
+
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+</div>
+</div>

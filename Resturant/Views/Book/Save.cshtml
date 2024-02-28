@@ -1,0 +1,76 @@
+﻿@model List<RestaruantMVC.Models.ViewModel.InsertBookviewModel>
+
+@{
+    ViewData["Title"] = "Save";
+}
+
+    <div class ="w-100 pt-5 mt-4 ">
+
+    
+
+    <div class="container shadow-lg my-3 ">
+        <h1 class="fw-bold text-center text-danger mb-4 w-100 py-2 bg-dark">Your Book</h1>
+        @foreach(var model in Model){
+    <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(m => model.userName)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(m => model.userName)
+                </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(m=> model.Arrivedat)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(m => model.Arrivedat)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(m => model.Leavedat)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(m => model.Leavedat)
+        </dd>
+
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(m => model.Numberofperson)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(m => model.Numberofperson)
+        </dd>
+
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(m => model.price)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(m => model.price)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(m => model.tablename)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(m => model.tablename)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(m => model.Products)
+        </dt>
+        <dd class="col-sm-10 d-flex flex-wrap">
+            @foreach (var product in model.Products)
+            {
+                <div class="card" style="width: 18rem;">
+                                   <div class="card-body">
+                            <img src="data:image/*;base64,@Convert.ToBase64String(product.Image)" class="card-img-top" alt="..." width="150" height="150">
+                        <h5 class="card-title">@product.ProductName</h5>
+                        <p>@product.ProdectType</p>
+                        <p>@product.Price</p>
+                    </div>
+                </div>
+            }
+        </dd>
+    </dl>
+    }
+    <div class="text-end p-3">
+        <a class="btn btn-dark px-4 " asp-action="userBook">Back</a>
+        </div>
+</div>
+
+</div>

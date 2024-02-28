@@ -1,0 +1,79 @@
+﻿@model IEnumerable<RestaruantMVC.Models.ViewModel.ProductViewModel>
+
+@{
+    ViewData["Title"] = "GetAllDrinks";
+}
+
+<div class="w-100 pt-5 ">
+
+
+
+<div class=" mt-5 text-center">
+        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+
+            <a class="btn btn-light px-3" asp-action="GetAllMeals">Meals</a>
+            <a class="btn btn-dark px-3" asp-action="GetAllDrinks">Drinks</a>
+
+        </div>
+</div>
+    @if (User.Identity.IsAuthenticated == true && User.IsInRole("Admin"))
+    {
+        <div class="mt-5 text-center">
+            <a class="btn btn-outline-dark" asp-action="Add">Add Product</a>
+        </div>
+    }
+
+<div class="d-flex justify-content-center flex-wrap">
+    @foreach (var item in Model)
+    {
+        <div class="card mx-3 my-3 shadow-lg " style="width: 18rem;">
+            <img src="data:image/*;base64,@Convert.ToBase64String(@item.Image)" class="card-img-top" alt="..." width="300" height="300">
+            <div class="card-body">
+                    <h3> Name: @item.ProductName</h3>
+                <p>Price: @item.Price LE</p>
+                    <input type="number" id="count_@item.producId" class="form-control w-25 mb-2" min="1" placeholder="1" value="1" />
+                <a href="/Product/GetById/@item.producId" class="btn btn-outline-dark mx-2 px-4"> Details</a>
+                    <button onclick="buy(@item.producId)" class="btn btn-outline-danger px-5 "> Buy </button>
+                @if (User.Identity.IsAuthenticated == true && User.IsInRole("Admin"))
+                {
+                <div class="m-2">
+                    <a asp-action="Edit" asp-route-id="@item.producId" class="btn btn-dark me-2 px-4"> Edite </a>
+                        <a asp-action="Delete" asp-route-id="@item.producId" class="btn btn-danger px-4 "> Delete</a>
+                </div>
+                }
+            </div>
+        </div>
+    }
+</div>
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    function buy(prdId) {
+        event.preventDefault();
+        var count = $('#count_' + prdId).val(); // Get the count value
+        var buyBtn = document.getElementById("btnbuy")
+        console.log(count)
+        $.ajax({
+            url: "/Book/Creat/" + prdId + "?count=" + count,
+            type: "GET", // or "POST" depending on your server-side implementation
+            success: function () {
+                console.log("Product bought successfully.");
+                buyBtn.classList.remove("d-none");
+            },
+            error: function () {
+                console.log("Error occurred while buying the product.");
+            }
+        });
+    }
+</script>
+
+
+
+
+
+
+
+

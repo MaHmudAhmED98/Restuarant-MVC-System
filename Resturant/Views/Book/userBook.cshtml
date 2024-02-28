@@ -1,0 +1,37 @@
+﻿@model IEnumerable<RestaruantMVC.Models.ViewModel.InsertBookviewModel>
+
+@{
+    ViewData["Title"] = "userBook";
+}
+<div class="w-100 pt-5 m-(-50)">
+    <div class="pt-3">
+    <h1 class="text-center my-3  w-75 m-auto text-danger py-2 bg-dark fw-bold">Your Book</h1>
+        <div class="container min-vh-100  w-75">
+
+@foreach (var item in Model) {
+                <div class="card mb-4  shadow-lg">
+                    <div class="row g-0">
+                        <div class="col-md-4 offset-2 ">
+                            <h3> Arrived At:</h3>
+                            <h3>Leave At:</h3>
+                            <h3>Number Of Person:</h3>
+                            <h3>Table Name:</h3>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card-body">
+                                <h4>@item.Arrivedat</h4>
+                                <h4>@item.Leavedat</h4>
+                                <h4>@item.Numberofperson</h4>
+                                <h4>@item.tablename</h4>
+                            </div>
+                            <div class="text-end pe-4">
+                                <a asp-controller="Book" asp-route-id="@item.BookId" asp-action="Details" class="btn btn-dark text-end mb-3">Detailes</a>
+                           </div>
+                        </div>
+                    </div>
+                </div>
+        
+}
+    </div>
+    </div>
+</div>

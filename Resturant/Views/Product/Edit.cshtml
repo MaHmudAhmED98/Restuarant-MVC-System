@@ -1,0 +1,75 @@
+﻿@model RestaruantMVC.Models.ViewModel.ProductViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<div class="w-50 pt-4 m-auto text-center">
+    <h1 class="mb-4  m-auto text-danger bg-dark  fw-bold py-3 ">Edit</h1>
+
+
+
+    <div class="d-flex justify-content-center text-start">
+    <div class="col-md-10">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="ProductName" class="control-label"></label>
+                <input asp-for="ProductName" class="form-control shadow my-2" />
+                <span asp-validation-for="ProductName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductDescription" class="control-label"></label>
+                    <input asp-for="ProductDescription" class="form-control shadow my-2" />
+                <span asp-validation-for="ProductDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProdectType" class="control-label"></label>
+
+                    <select asp-for="ProdectType" class=" form-control shadow my-2">
+                    <option>Product Type</option>
+                    @foreach (var item in Enum.GetNames(typeof(productType)))
+                    {
+                        if(Model.ProdectType.ToString() == item)
+                        {
+                            <option value="@item" selected>@item</option>
+
+                        }else{<option value="@item">@item</option>}
+                        
+                    }
+                </select>
+
+                <span asp-validation-for="ProdectType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                    <input asp-for="Price" class="form-control shadow my-2" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="File" class="control-label"></label>
+                    <input type="file" asp-for="File" class="form-control shadow my-2" />
+                <span asp-validation-for="File" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-dark px-3 my-2" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+        @if (Model.ProdectType == productType.drink)
+        {
+            <a class="text-dark" asp-action="GetAllDrinks">Back to List</a>
+        }
+        else
+        {
+            <a class="text-dark" asp-action="GetAllMeals">Back to List</a>
+
+        }
+</div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

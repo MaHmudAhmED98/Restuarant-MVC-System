@@ -1,0 +1,58 @@
+﻿@model IEnumerable<RestaruantMVC.Models.ViewModel.InsertBookviewModel>
+
+@{
+    ViewData["Title"] = "Getall";
+}
+<div class="w-100 ">
+    <h1 class="text-center text-danger fw-bold my-3">Booked Tables</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.userName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Arrivedat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Leavedat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Numberofperson)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tablename)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.userName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Arrivedat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Leavedat)
+            </td>
+            <td class="ps-5">
+                @Html.DisplayFor(modelItem => item.Numberofperson)
+            </td>
+                    <td class="ps-3">
+                @Html.DisplayFor(modelItem => item.tablename )
+            </td>
+            <td>
+
+                        <a asp-action="Details" asp-route-id="@item.BookId" class="btn btn-outline-danger">Details</a>
+
+                    </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>

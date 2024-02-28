@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/css/all.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="~/css/site.css"  />
+    <link rel="stylesheet" href="~/Resturant.styles.css"  />
+
+</head>
+<body>
+    <div>
+      <main id="register" class=" d-flex justify-content-center align-items-center min-vh-100">
+            <div class="col-lg-3 ">
+                <div class="m-auto bg-light rounded shadow p-3 py-4">
+                    @RenderBody()
+                </div>
+          </div>
+      </main>
+    </div>
+
+	
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/"></script>
+    <script src="~/js/site.js" ></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

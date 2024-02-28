@@ -1,0 +1,64 @@
+﻿@model RestaruantMVC.Models.ViewModel.InsertBookviewModel
+
+@{
+    ViewData["Title"] = "Insert";
+
+}
+<div class="w-50 m-auto text-center shadow-lg">
+
+<h1 class="mb-4 fs-1 m-auto text-danger bg-dark  fw-bold py-3">BOOK</h1>
+
+
+
+<div class=" d-flex justify-content-center text-start">
+    <div class="col-md-10 ">
+        <form asp-action="Insert">
+            <div class="form-group">
+                <label asp-for="Arrivedat" class="control-label"></label>
+                    <input asp-for="Arrivedat" class="form-control shadow my-2" />
+                <span asp-validation-for="Arrivedat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Leavedat" class="control-label"></label>
+                    <input asp-for="Leavedat" class="form-control shadow my-2" />
+                <span asp-validation-for="Leavedat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Numberofperson" class="control-label"></label>
+                    <input asp-for="Numberofperson" min="1"  class="form-control shadow my-2" />
+                <span asp-validation-for="Numberofperson" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                    <label asp-for="tableId" class="control-label "></label>
+                    <select class="form-check form-control shadow my-2" name="tableId" id="tableId">
+                    <option value="0">
+                        Select table
+                    </option>
+                    @foreach (Table table in ViewBag.tablelist)
+                    {
+                       
+                            <option value="@table.tableId">
+                                @table.Name
+                            </option>
+                        }
+                    }
+                </select>
+                    <span asp-validation-for="tablename" class="text-danger"></span>
+            </div>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                @* <div class="text-danger">@Html.ValidationSummary(false, "", new { @class = "text-danger" })</div> *@
+            <div class="form-group">
+                    <input type="submit" value="Book" asp-action="InitaitOrder" asp-controller="Book" class="btn btn-dark px-3 my-2 " />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="mb-3">
+        <a asp-action="Index" asp-controller="Home" class="text-dark ">Back to Home</a>
+</div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

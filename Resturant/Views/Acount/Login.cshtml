@@ -1,0 +1,46 @@
+﻿@model Resturant.Models.ViewModel.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = "_loginLayout1";
+}
+
+<h1 class=" text-center ">Log In</h1>
+
+
+
+<div class="">
+    <div class="">
+        <form asp-action="Login" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="userName" class="control-label"></label>
+                <input asp-for="userName" class="form-control" />
+                <span asp-validation-for="userName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input my-2" asp-for="RememberMe" /> @Html.DisplayNameFor(model => model.RememberMe)
+                </label>
+            </div>
+            <div class="form-group text-center">
+               
+                <button type="submit" class=" btn btn-dark rounded-2  my-3 p-2 px-4 ">LogIn <i class="fa-solid fa-right-from-bracket text-danger"></i></button>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="text-center ">
+    <a asp-action="Register" class="text-dark " >Sign Up</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
